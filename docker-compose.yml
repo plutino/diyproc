@@ -6,7 +6,7 @@ services:
       args:
         YARN_OPTS: '--prod'
         APP_HOME: '/app'
-    image: plutino/diyproc-server
+    image: plutino/mpt-server
     volumes:
       - ./log:/app/log
     environment:
@@ -21,7 +21,7 @@ services:
       context: .
       args:
         APP_HOME: '/app'
-    image: plutino/diyproc-server-test
+    image: plutino/mpt-server-test
     command: "yarn test"
     volumes:
       - ./log:/app/log
