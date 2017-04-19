@@ -1,0 +1,24 @@
+#!/bin/bash
+
+# usage: test [all|unit|integration|testfile pattens]
+
+args=${1:-all}
+
+case $args in
+all)
+  testfiles='test/**/*.test.js'
+  ;;
+unit)
+  testfiles='test/unit/**/*.test.js'
+  ;;
+integration)
+  testfiles='test/integration/**/*.test.js'
+  ;;
+*)
+  testfiles=$1
+  ;;
+esac
+
+docker-compose build test || exit 1
+
+docker-compose run -e TESTS=$testfiles --rm test
