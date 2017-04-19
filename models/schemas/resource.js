@@ -6,7 +6,7 @@ const commentSchema = require('./comment')
 const resourceSchema = new Schema({
   name: String,
   type: String,
-  image: String,
+  description: String,
   quantityRequired: Number,
   quantityAvailable: Number,
   cost: Number,

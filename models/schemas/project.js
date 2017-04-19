@@ -12,9 +12,10 @@ const projectSchema = new Schema({
   name: String,
   description: String,
   tags: [String],
-  owner: { type : Schema.ObjectId, ref : 'User' },
-  collaborators: [{ type : Schema.ObjectId, ref : 'User' }],
-  followers: [{ type : Schema.ObjectId, ref : 'User' }],
+  users: [{
+    role: String,
+    user: {type: Schema.ObjectId, ref: 'User'}
+  }]
   tools: [resourceSchema],
   materials: [resourceSchema],
   tasks: [taskSchema],

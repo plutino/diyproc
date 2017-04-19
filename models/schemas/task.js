@@ -10,9 +10,6 @@ const taskSchema = new Schema({
   createdAt: { type: Date, default: Date.now },
   startedAt: { type: Date, default: Date.now },
   finishedAt: { type: Date, default: Date.now },
-  images: [String],
-  videos: [String],
-  sortIndex: Number,
   comments: [commentSchema]
 })
 
