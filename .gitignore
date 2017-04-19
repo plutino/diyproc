@@ -25,3 +25,5 @@ db
 
 # temporary stuff
 tmp
+
+.DS_Store
