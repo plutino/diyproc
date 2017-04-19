@@ -1,0 +1,37 @@
+version: '2'
+services:
+  server:
+    build:
+      context: .
+      args:
+        YARN_OPTS: '--prod'
+        APP_HOME: '/app'
+    image: plutino/diyproc-server
+    volumes:
+      - ./log:/app/log
+    environment:
+      - MONGODB_HOST=mongodb
+    ports:
+      - "3000:3000"
+    depends_on:
+      - mongodb
+    stop_grace_period: 1s
+  test:
+    build:
+      context: .
+      args:
+        APP_HOME: '/app'
+    image: plutino/diyproc-server-test
+    command: "yarn test"
+    volumes:
+      - ./log:/app/log
+    environment:
+      - mongodb_HOST=mongodb
+    depends_on:
+      - mongodb
+  mongodb:
+    image: "mvertes/alpine-mongo"
+    ports:
+      - "27017:27017"
+    volumes:
+      - ./db:/data/db
