@@ -1,5 +1,6 @@
 {
   "mongodb": {
-    "host": "localhost:12017"
+    "host": "localhost",
+    "database": "mpt"
   }
 }

@@ -1,0 +1,5 @@
+{
+  "mongodb": {
+    "database": "mpt_test"
+  }
+}
