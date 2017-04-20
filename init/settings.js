@@ -9,11 +9,7 @@ function _setEnv(){
 
 function loadSettings(){
   _setEnv()
-  let settings = require('config')
-  // not ideal, but no good way to get around supplying array values through environment variables
-  if (typeof(settings.faye.publishTokens) === 'string') {
-    settings.faye.publishTokens = settings.faye.publishTokens.split(' ')
-  }
+  const settings = require('config')
   return settings
 }
 
