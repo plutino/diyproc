@@ -5,7 +5,7 @@
   "scripts": {
     "start": "node ./bin/www",
     "test": "mocha ${TESTS:-test/**/*.test.js}",
-    "test:unit": "mocha test/unit/**/*.test.js",
+    "test:unit": "mocha app/**/*.test.js lib/**/*.test.js",
     "test:integration": "mocha test/integration/**/*.test.js"
   },
   "dependencies": {
