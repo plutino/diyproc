@@ -1,6 +1,8 @@
 {
   "name": "myprojecttrack",
   "version": "0.0.0",
+  "author": "Ke Zhang",
+  "license": "MIT",
   "private": true,
   "scripts": {
     "start": "node ./bin/www",
