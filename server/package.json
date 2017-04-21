@@ -5,7 +5,7 @@
   "license": "MIT",
   "private": true,
   "scripts": {
-    "start": "node server.js",
+    "start": "nodemon server.js",
     "test": "mocha ${TESTS:-test/**/*.test.js}",
     "test:unit": "mocha app/**/*.test.js lib/**/*.test.js",
     "test:integration": "mocha test/integration/**/*.test.js"
@@ -24,6 +24,7 @@
     "chai": "^3.5.0",
     "mocha": "^3.2.0",
     "mocha-mongoose": "^1.2.0",
+    "nodemon": "^1.11.0",
     "sinon": "^2.1.0"
   }
 }

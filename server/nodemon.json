@@ -1,0 +1,12 @@
+{
+  "ignore": [
+    "node_modules/**/node_modules",
+    "**/*.test.js",
+    "test"
+  ],
+  "env": {
+    "NODE_ENV": "development"
+  },
+  "ext": "js json",
+  "verbose": true
+}
