@@ -6,8 +6,8 @@
 
 const debug = require('debug')('mpt:server');
 const http = require('http');
-const initialize = require('../init');
-const app = require('../app');
+const initialize = require('./init');
+const app = require('./app');
 
 initialize().then(() => {
   const port = normalizePort(process.env.PORT || '3000');
