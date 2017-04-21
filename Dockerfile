@@ -10,9 +10,9 @@ RUN npm install -g yarn
 RUN mkdir -p $APP_HOME
 WORKDIR $APP_HOME
 
-COPY package.json yarn.lock ./
+COPY server/package.json server/yarn.lock ./
 RUN yarn install $YARN_OPTS
 
-COPY . .
+COPY server/* .
 
 CMD yarn start
