@@ -15,7 +15,7 @@ const projectSchema = new Schema({
   users: [{
     role: String,
     user: {type: Schema.ObjectId, ref: 'User'}
-  }]
+  }],
   tools: [resourceSchema],
   materials: [resourceSchema],
   tasks: [taskSchema],
