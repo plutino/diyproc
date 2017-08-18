@@ -1,5 +1,5 @@
-global.settings = require('./init/settings')
+global.settings = require('./settings')
 
-module.exports = function() {
-  return require('./init/mongoose')()
+module.exports = () => {
+  return require('./mongoose')()
 }
