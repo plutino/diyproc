@@ -1,2 +1,3 @@
-# diyproc
-DIY project manager
+# mpt
+
+My Project Tracker
