@@ -12,12 +12,13 @@ services:
 
   dev-server:
     <<: *base
-    command: 'yarn start'
+    command: 'yarn start:dev'
     environment:
       - MONGODB_HOST=mongodb
       - NODE_ENV=development
     ports:
       - "${PORT:-3000}:3000"
+    stop_grace_period: 1s
 
   mongodb:
     image: "mvertes/alpine-mongo"

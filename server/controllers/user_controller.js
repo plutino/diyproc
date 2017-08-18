@@ -4,10 +4,10 @@ module.exports = {
   index: (req, res) => {
   },
 
-  new: (req, res) => {
+  create: (req, res) => {
   },
 
-  show: (req, res) => {
+  fetch: (req, res) => {
   },
 
   update: (req, res) => {
