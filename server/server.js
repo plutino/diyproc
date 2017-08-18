@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
-const initialize = require('./init');
-const app = require('./app');
+const initialize = require('./init/init');
+const app = require('./app/app');
 
 initialize().then(() => {
   const port = parseInt(process.env.PORT || '3000');
