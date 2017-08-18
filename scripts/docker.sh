@@ -13,11 +13,14 @@ COMMAND:
 
   console               - Start a Node.js console in a Docker container.
 
-  release [TAG]         - Build production image and push to DockerHub. Takes an optional
+  build [TAG]           - Build Docker image. Takes an optional argument for image tag.
+
+  release [TAG]         - Build Docker image and push to DockerHub. Takes an optional
                           argument for image tag.  DockerHub login and permission required.
 
   test [PATTERNS]       - Run tests in a Docker container.  May run a subset of tests with:
-                            $0 test test/models/*_test.js test/unit/**/*_test.js
+                            $0 test unit
+                            $0 test test/models/*_test.js
 
   help                  - Print this help message.
 EOM
@@ -38,11 +41,13 @@ console)
   ;;
 
 build)
-  build $1
+  tag=${1:-latest}
+  build $tag
   ;;
 
 release)
-  build $1
+  tag=${1:-latest}
+  build $tag
   echo "*** Pushing image plutino/$SERVICE_NAME:$tag to DockerHub"
   docker push plutino/$SERVICE_NAME:$tag
   ;;
