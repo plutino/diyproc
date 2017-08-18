@@ -1,5 +1,3 @@
-#!/usr/bin/env node
-
 const initialize = require('./init/init');
 const app = require('./app/app');
 
@@ -12,8 +10,9 @@ initialize().then(() => {
       console.log(`Listening on port ${port}`)
     }
   })
-}, (err) => {
-  throw err
+}).catch(err => {
+  console.error(err.stack)
+  process.exit(1)
 })
 
 function handleError(error, port) {

@@ -1,7 +1,12 @@
 const mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
 
-module.exports = function() {
-  const databaseUri = `mongodb://${settings.mongodb.host}/${settings.mongodb.database}`;
-  return mongoose.connect(databaseUri, {useMongoClient: true});
-}
+const databaseUri = `mongodb://${settings.mongodb.host}/${settings.mongodb.database}`;
+
+module.exports = mongoose.connect(databaseUri, {useMongoClient: true})
+                         .then(()=>{
+                           console.log('Connected to ' + databaseUri)
+                         }).catch(err => {
+                           console.error('Failed to connect to MongoDB')
+                           throw err
+                         })

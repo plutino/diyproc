@@ -1,5 +1,4 @@
-const express = require('express');
-const router = express.Router();
+const router = require('express').Router();
 const ctrl = require('../controllers/project_controller')
 
 router.get('/', ctrl.index);
