@@ -1,9 +1,27 @@
-const router = require('express').Router();
-const ctrl = require('../controllers/user_controller')
+const User = require('../models/user')
 
-router.get('/', ctrl.index);
-router.post('/', ctrl.create);
-router.get('/:userId', ctrl.fetch)
-router.put('/:userId', ctrl.update)
+module.exports = router => {
+  router.route('/')
+  .get((req, res, next) => {
+    //list
 
-module.exports = router;
+  })
+  .post((req, res, next) => {
+    //create
+
+  });
+
+  router.route('/:projectId')
+  .get((req, res, next) => {
+    //fetch
+
+  })
+  .put((req, res, next) => {
+    //update
+
+  })
+  .delete((req, res, next) => {
+    //delete
+
+  });
+}

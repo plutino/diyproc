@@ -1,9 +1,36 @@
-const router = require('express').Router();
-const ctrl = require('../controllers/project_controller')
+const Project = require('../models/project')
 
-router.get('/', ctrl.index);
-router.post('/', ctrl.create);
-router.get('/:projectId', ctrl.fetch)
-router.put('/:projectId', ctrl.update)
+module.exports = router => {
+  router.route('/')
+  .get((req, res, next) => {
+    // list
+    res.json([
+     {
+       id: 1,
+       name: 'p1'
+     },
+     {
+       id: 2,
+       name: 'p2'
+     }
+    ])
+  })
+  .post((req, res, next) => {
+    // create
 
-module.exports = router;
+  });
+
+  router.route('/:projectId')
+  .get((req, res, next) => {
+    //fetch
+
+  })
+  .put((req, res, next) => {
+    //update
+
+  })
+  .delete((req, res, next) => {
+    //delete
+
+  });
+}

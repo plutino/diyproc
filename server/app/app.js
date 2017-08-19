@@ -16,29 +16,29 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 /*** Routes ***/
-
-var users = require('./routes/users');
-app.use(`/api/${settings.api_version}/users`, users);
-
-var projects = require('./routes/projects');
-app.use(`/api/${settings.api_version}/projects`, projects);
+require('./routes/index')(app)
 
 // catch 404 and forward to error handler
-app.use(function(req, res, next) {
+app.use((req, res, next) => {
   var err = new Error('Not Found');
   err.status = 404;
   next(err);
 });
 
 // error handler
-app.use(function(err, req, res, next) {
-  // set locals, only providing error in development
+app.use((err, req, res, next) => {
+  let reported_err = req.app.get('env') === 'development' ? err : {};
+  // set locals
   res.locals.message = err.message;
-  res.locals.error = req.app.get('env') === 'development' ? err : {};
+  res.locals.error = reported_err
 
   // render the error page
   res.status(err.status || 500);
-  res.render('error');
+  res.json({
+    message: err.message,
+    error: reported_err
+  })
+  next(err)
 });
 
 module.exports = app;
