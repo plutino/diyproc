@@ -1,4 +1,41 @@
 const mongoose = require('mongoose');
-const projectSchema = require('./schemas/project')
+const Schema = mongoose.Schema
+
+const Comment = require('./comment')
+const Reference = require('./reference')
+const Resource = require('./resource')
+const Task = require('./task')
+
+const projectSchema = new Schema({
+  createdAt: {
+    type: Date,
+    default: Date.now
+  },
+  updatedAt: {
+    type: Date,
+    default: Date.now
+  },
+  name: {
+    type: String,
+    required: 'Project name cannot be blank'
+  },
+  description: String,
+  tags: [String],
+  users: {
+    type: [{
+      role: {
+        type: String,
+        required: 'Project user must have a role',
+        enum: ['owner', 'collaborator', 'follower']
+      },
+      user: { type: Schema.ObjectId, ref: 'User', required: true },
+    }],
+    required: 'Project must have at least one user'
+  },
+  tools: [Resource.schema],
+  materials: [Resource.schema],
+  tasks: [Task.schema],
+  comments: [Comment.schema]
+})
 
 module.exports = mongoose.model('Project', projectSchema)
