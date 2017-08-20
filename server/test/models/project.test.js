@@ -16,15 +16,14 @@ describe('Project', function(){
     })
 
     describe('users', function(){
-      it('can not be empty', function(done){
+      it('can not be empty', function(){
         let proj = new Project
-        proj.validate(err => {
+        return proj.validate().catch(err => {
           expect(err.errors.users.message).to.equal('Project must have at least one user')
-          done()
         })
       })
       
-      it('should have roles', function(done){
+      it('should have roles', function(){
         factory.createMany('user', 2)
         .then((users) => {
           let proj = new Project
@@ -36,11 +35,10 @@ describe('Project', function(){
             user: users[1]
           })
 
-          proj.validate(err => {
+          return proj.validate().catch(err => {
             expect(err.errors['users.1.role'].message)
             .to.equal('Project user must have a role')
             expect(err.errors['users.0.role']).not.to.exist
-            done()
           })
         })
       })

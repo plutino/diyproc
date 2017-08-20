@@ -4,21 +4,19 @@ const Resource = require('../../app/models/resource')
 describe('Resource', function(){
   describe('attributes', function(){
     describe('name', function(){
-      it('cannot be blank', function(done){
+      it('cannot be blank', function(){
         let res = new Resource
-        res.validate(err => {
+        return res.validate().catch(err => {
           expect(err.errors.name.message).to.equal('Resource name cannot be blank')
-          done()
         })
       })
     })
 
     describe('type', function () {
-      it('should be present', function(done){
+      it('should be present', function(){
         let res = new Resource
-        res.validate(err => {
+        return res.validate().catch(err => {
           expect(err.errors.type.message).to.equal('Resource type is required')
-          done()
         })
       })
 
@@ -26,23 +24,21 @@ describe('Resource', function(){
       let invalidTypes = ['', 'random string']
 
       validTypes.forEach(tp => {
-        it('can be ' + tp, function(done){
+        it('can be ' + tp, function(){
           let res = new Resource
           res.type = tp
-          res.validate(err => {
+          return res.validate().catch(err => {
             expect(err.errors.type).not.to.exist
-            done()
           })
         })
       })
 
       invalidTypes.forEach(tp => {
-        it('cannot be ' + (tp === '' ? 'empty' : tp), function(done){
+        it('cannot be ' + (tp === '' ? 'empty' : tp), function(){
           let res = new Resource
           res.type = tp
-          res.validate(err => {
+          return res.validate().catch(err => {
             expect(err.errors.type).to.exist
-            done()
           })
         })
       })

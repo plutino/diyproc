@@ -4,11 +4,10 @@ const Task = require('../../app/models/task')
 describe('Task', function(){
   describe('attributes', function(){
     describe('description', function(){
-      it('cannot be blank', function(done){
+      it('cannot be blank', function(){
         let task = new Task
-        task.validate(err => {
+        return task.validate().catch(err => {
           expect(err.errors.description.message).to.equal('Task description cannot be blank')
-          done()
         })
       })
     })
@@ -18,23 +17,21 @@ describe('Task', function(){
       let invalidStates = ['', 'random string']
 
       validStates.forEach(state => {
-        it('can be ' + state, function(done){
+        it('can be ' + state, function(){
           let task = new Task
           task.state = state
-          task.validate(err => {
+          return task.validate().catch(err => {
             expect(err.errors.state).not.to.exist
-            done()
           })
         })
       })
 
       invalidStates.forEach(state => {
-        it('cannot be ' + (state === '' ? 'empty' : state), function(done){
+        it('cannot be ' + (state === '' ? 'empty' : state), function(){
           let task = new Task
           task.state = state
-          task.validate(err => {
+          return task.validate().catch(err => {
             expect(err.errors.state).to.exist
-            done()
           })
         })
       })
@@ -45,24 +42,22 @@ describe('Task', function(){
       let statesNotRequireStartedAt = ['unstarted']
 
       statesRequiresStartedAt.forEach(state => {
-        it('must be present if task is ' + state, function(done){
+        it('must be present if task is ' + state, function(){
           let task = new Task
           task.state = state
-          task.validate(err => {
+          return task.validate().catch(err => {
             expect(err.errors.startedAt.message)
             .to.be.equal('startedAt is required unless a task was never started')
-            done()
           })
         })
       })
 
       statesNotRequireStartedAt.forEach(state => {
-        it('should not be required if task is ' + state, function(done){
+        it('should not be required if task is ' + state, function(){
           let task = new Task
           task.state = state
-          task.validate(err => {
+          return task.validate().catch(err => {
             expect(err.errors.startedAt).not.to.be.exist
-            done()
           })
         })
       })
@@ -73,24 +68,22 @@ describe('Task', function(){
       let statesNotRequireFinishedAt = ['unstarted', 'started', 'paused']
 
       statesRequiresFinishedAt.forEach(state => {
-        it('must be present if task is ' + state, function(done){
+        it('must be present if task is ' + state, function(){
           let task = new Task
           task.state = state
-          task.validate(err => {
+          return task.validate().catch(err => {
             expect(err.errors.finishedAt.message)
             .to.be.equal('finishedAt is required for a finished task')
-            done()
           })
         })
       })
 
       statesNotRequireFinishedAt.forEach(state => {
-        it('should not be required if task is ' + state, function(done){
+        it('should not be required if task is ' + state, function(){
           let task = new Task
           task.state = state
-          task.validate(err => {
+          return task.validate().catch(err => {
             expect(err.errors.finishedAt).not.to.be.exist
-            done()
           })
         })
       })
