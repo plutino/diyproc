@@ -1,3 +1,4 @@
+require('../helper')
 const Comment = require('../../app/models/comment')
 
 describe('Comment', function(){

@@ -1,3 +1,4 @@
+require('../helper')
 const Reference = require('../../app/models/reference')
 
 describe('Reference', function(){

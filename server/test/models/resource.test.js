@@ -1,3 +1,4 @@
+require('../helper')
 const Resource = require('../../app/models/resource')
 
 describe('Resource', function(){

@@ -1,3 +1,4 @@
+require('../helper')
 const User = require('../../app/models/user')
 
 describe('User', function(){

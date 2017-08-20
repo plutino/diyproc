@@ -7,4 +7,12 @@ global.expect = chai.expect
 global.spy = sinon.spy
 
 process.env.NODE_ENV = 'test'
-require('../init/init')()
+
+global.settings = require('../init/settings')
+
+// global factory
+const factoryGirl = require('factory-girl')
+global.factory = require('factory-girl').factory
+factory.setAdapter(new factoryGirl.MongooseAdapter())
+require('require-dir')('factories')
+factory.cleanUp()

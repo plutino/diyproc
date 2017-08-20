@@ -1,3 +1,4 @@
+require('../helper')
 const Task = require('../../app/models/task')
 
 describe('Task', function(){
