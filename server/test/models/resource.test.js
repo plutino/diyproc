@@ -44,7 +44,7 @@ describe('Resource', function(){
       })
     })
 
-    describe('quantityRequired', function () {
+    describe('quantityRequired', function(){
       it('should be 1 or greater', function(){
         let res = new Resource
         res.quantityRequired = 0
@@ -56,9 +56,15 @@ describe('Resource', function(){
         err = res.validateSync()
         expect(err.errors.quantityRequired).not.to.exist
       })
+
+      it('should default to 1', function(){
+        return factory.create('material').then(res => {
+          expect(res.quantityRequired).to.equal(1)
+        })
+      })
     })
 
-    describe('quantityAvailable', function () {
+    describe('quantityAvailable', function(){
       it('cannot be negative', function(){
         let res = new Resource
         res.quantityAvailable = -1
@@ -73,6 +79,20 @@ describe('Resource', function(){
         res.quantityAvailable = 2
         err = res.validateSync()
         expect(err.errors.quantityAvailable).not.to.exist
+      })
+
+      it('should default to 0', function(){
+        return factory.create('material').then(res => {
+          expect(res.quantityAvailable).to.equal(0)
+        })
+      })
+    })
+
+    describe('cost', function(){
+      it('should default to 0', function(){
+        return factory.create('material').then(res => {
+          expect(res.cost).to.equal(0)
+        })
       })
     })
   })

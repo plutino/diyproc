@@ -1,5 +1,5 @@
 var User = require('../../app/models/user')
 
 factory.define('user', User, {
-  email: factory.sequence('User.email', n => `user-${n}@mpt.test`)
+  email: factory.seq('User.email', n => `user-${n}@mpt.test`)
 })

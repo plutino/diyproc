@@ -30,7 +30,12 @@ const projectSchema = new Schema({
       },
       user: { type: Schema.ObjectId, ref: 'User', required: true },
     }],
-    required: 'Project must have at least one user'
+    validate: [
+      function() {
+        return this.users.map((u) => {return u.role}).includes('owner')
+      },
+      'Project must have at least one owner'
+    ]
   },
   tools: [Resource.schema],
   materials: [Resource.schema],

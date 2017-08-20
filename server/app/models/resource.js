@@ -26,7 +26,7 @@ const resourceSchema = new Schema({
   },
   cost: {
     type: Number,
-    default: 0
+    default: 0.0
   },
   comments: [Comment.schema]
 })

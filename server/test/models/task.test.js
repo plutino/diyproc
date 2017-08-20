@@ -13,6 +13,12 @@ describe('Task', function(){
     })
 
     describe('state', function(){
+      it('should default to unstarted', function(){
+        return factory.create('task').then(task => {
+          expect(task.state).to.equal('unstarted')
+        })
+      })
+      
       let validStates = ['unstarted', 'started', 'paused', 'finished']
       let invalidStates = ['', 'random string']
 
@@ -33,6 +39,14 @@ describe('Task', function(){
           return task.validate().catch(err => {
             expect(err.errors.state).to.exist
           })
+        })
+      })
+    })
+    
+    describe('createdAt', function(){
+      it('should have a default', function(){
+        return factory.create('task').then(task => {
+          expect(task.createdAt).to.exist
         })
       })
     })
